@@ -16,9 +16,12 @@ Node.js       |  ^18.15
 
 ## Passo a passo
 
-* Clone o repositório `https://github.com/lobofoltran/teste-grupo-ergon-laravel.git`
-* Dentro do diretório, duplique o arquivo `.env.example` e renomeie-o para `.env` 
-* Na pasta base, utilize os comandos `composer install`, `npm install` e `npm run dev`
+* Clone o repositório `git clone https://github.com/lobofoltran/teste-grupo-ergon-laravel.git`
+* Dentro do diretório, utilize o comando  `composer install`
+* Renomeie o arquivo `.env.example` para `.env` 
+* Utilize os comandos `npm install` e `npm run dev`
+* Para criar o banco de dados em sqlite, utilize `php artisan migrate --seed` e digite `yes`
+* Crie uma chave para o projeto, utilize `php artisan key:generate`
 * E por fim, utilize `php artisan serve --port=8000`
 * O servidor local ficará disponível em `http://localhost:8000`
 
@@ -28,8 +31,6 @@ Foi criado dois usuários para teste através das seeds, caso queiram utilizá-l
 
 * Usuário `test@test.com` - senha `1234`
 * Usuário `test2@test.com` - senha `1234`
-
-Fique a vontade caso queira rodar o comando `php artisan migrate:refresh --seed`
 
 # Testes Unitários (TDD)
 
