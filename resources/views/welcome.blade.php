@@ -5,7 +5,7 @@
         <div class="hero-overlay bg-opacity-20"></div>
             <div class="hero-content text-center text-neutral-content p-10 bg-gray-900 border-gray-300 border-2 rounded-2xl bg-opacity-90">
                 <div class="max-w-xl">
-                    <h1 class="mb-5 text-5xl font-bold">{{ __("Encontre o que assistir") }}</h1>
+                    <h1 class="mb-5 text-5xl font-bold">{{ __("Comunidade de recomendação de filmes e séries") }}</h1>
                     <p class="mb-5">{{ __("Está cansado de nunca achar o que assistir? Acesse e faça parte da maior comunidade de recomendação de de filmes e séries") }}</p>
                     @auth
                         <a class="btn glass btn-wide" href="{{ route('posts.index') }}">{{ __("Entre no Sistema") }}</a>
