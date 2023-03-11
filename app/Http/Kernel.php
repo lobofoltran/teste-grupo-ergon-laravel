@@ -63,5 +63,8 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'owner.post' => \App\Http\Middleware\OwnerPost::class,
+        'post.open' => \App\Http\Middleware\PostOpen::class,
+        'post.no-interation' => \App\Http\Middleware\NoInterationPost::class,
     ];
 }

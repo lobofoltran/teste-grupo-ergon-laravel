@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\FollowController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\VoteController;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Passwords\Confirm;
 use App\Http\Livewire\Auth\Passwords\Email;
@@ -21,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome')->name('home');
+Route::view('/', 'welcome')->name('index');
 
 Route::middleware('guest')->group(function () {
     Route::get('login', Login::class)
@@ -53,4 +56,16 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', LogoutController::class)
         ->name('logout');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+    Route::get('/posts/history', [PostController::class, 'history'])->name('posts.history');
+    Route::get('/posts/followed', [PostController::class, 'followed'])->name('posts.followed');
+    Route::get('/posts/new', [PostController::class, 'create'])->name('posts.create');
+    Route::post('/posts/new', [PostController::class, 'store'])->name('posts.store');
+    Route::get('/posts/edit/{id}', [PostController::class, 'edit'])->name('posts.edit')->middleware(['owner.post', 'post.open', 'post.no-interation']);
+    Route::post('/posts/update/{id}', [PostController::class, 'update'])->name('posts.update')->middleware(['owner.post', 'post.open', 'post.no-interation']);
+    Route::delete('/posts/delete/{id}', [PostController::class, 'destroy'])->name('posts.delete')->middleware(['owner.post', 'post.open', 'post.no-interation']);
+    Route::post('/posts/conclued/{id}', [PostController::class, 'conclued'])->name('posts.conclued')->middleware(['owner.post', 'post.open']);
 });

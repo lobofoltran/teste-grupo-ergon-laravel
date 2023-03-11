@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Auth\Passwords;
 
+use App\Providers\RouteServiceProvider;
 use Livewire\Component;
 
 class Confirm extends Component
@@ -17,7 +18,7 @@ class Confirm extends Component
 
         session()->put('auth.password_confirmed_at', time());
 
-        return redirect()->intended(route('home'));
+        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     public function render()

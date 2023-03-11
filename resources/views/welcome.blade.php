@@ -1,58 +1,22 @@
-@extends('layouts.app')
+@extends('layouts.guest')
 
 @section('content')
-    <div class="flex flex-col justify-center min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8">
-        <div class="absolute top-0 right-0 mt-4 mr-4">
-            @if (Route::has('login'))
-                <div class="space-x-4">
+    <div class="hero min-h-screen" style="background-image: url({{ Vite::asset('resources/images/hero.png') }})">
+        <div class="hero-overlay bg-opacity-20"></div>
+            <div class="hero-content text-center text-neutral-content p-10 bg-gray-900 border-gray-300 border-2 rounded-2xl bg-opacity-90">
+                <div class="max-w-xl">
+                    <h1 class="mb-5 text-5xl font-bold">{{ __("Encontre o que assistir") }}</h1>
+                    <p class="mb-5">{{ __("Está cansado de nunca achar o que assistir? Acesse e faça parte da maior comunidade de recomendação de de filmes e séries") }}</p>
                     @auth
-                        <a
-                            href="{{ route('logout') }}"
-                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                            class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150"
-                        >
-                            Log out
-                        </a>
-
+                        <a class="btn glass btn-wide" href="{{ route('posts.index') }}">{{ __("Entre no Sistema") }}</a>
+                        <a class="btn glass ml-3" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __("Log out") }}</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
                     @else
-                        <a href="{{ route('login') }}" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">Log in</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">Register</a>
-                        @endif
+                        <a class="btn glass" href="{{ route('login') }}">{{ __("Faça Login") }}</a>
+                        <a class="btn glass ml-3" href="{{ route('register') }}">{{ __("Registre-se") }}</a>
                     @endauth
-                </div>
-            @endif
-        </div>
-
-        <div class="flex items-center justify-center">
-            <div class="flex flex-col justify-around">
-                <div class="space-y-6">
-                    <a href="{{ route('home') }}">
-                        <x-logo class="w-auto h-16 mx-auto text-indigo-600" />
-                    </a>
-
-                    <h1 class="text-5xl font-extrabold tracking-wider text-center text-gray-600">
-                        {{ config('app.name') }}
-                    </h1>
-
-                    <ul class="list-reset">
-                        <li class="inline px-4">
-                            <a href="https://tailwindcss.com" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">Tailwind CSS</a>
-                        </li>
-                        <li class="inline px-4">
-                            <a href="https://github.com/alpinejs/alpine" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">Alpine.js</a>
-                        </li>
-                        <li class="inline px-4">
-                            <a href="https://laravel.com" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">Laravel</a>
-                        </li>
-                        <li class="inline px-4">
-                            <a href="https://laravel-livewire.com" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">Livewire</a>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
