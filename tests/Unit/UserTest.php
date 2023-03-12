@@ -55,6 +55,11 @@ class UserTest extends TestCase
         $post = Post::factory()->create(['user_id' => $user->id]);
 
         $user->votePositive($post);
+
+        $this->assertEquals(1, Post::find($post->id)->positiveVotes->count());
+        $this->assertEquals(0, Post::find($post->id)->negativeVotes->count());
+
+        $post = Post::find($post->id);
         $user->voteNegative($post);
 
         $this->assertEquals(0, Post::find($post->id)->positiveVotes->count());
@@ -70,8 +75,10 @@ class UserTest extends TestCase
         $post = Post::factory()->create(['user_id' => $user->id]);
 
         $user->follow($post);
-        $user->follow($post);
+        $this->assertEquals(1, Post::find($post->id)->follows->count());
 
+        $post = Post::find($post->id);
+        $user->follow($post);
         $this->assertEquals(0, Post::find($post->id)->follows->count());
     }
 }

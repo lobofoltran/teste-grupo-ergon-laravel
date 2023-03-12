@@ -97,7 +97,7 @@ class User extends Authenticatable
      */
     public function hasPositiveVoted(Post $post): bool
     {
-        return Post::find($post->id)->positiveVotes->contains('user_id', $this->id);
+        return $post->positiveVotes->contains('user_id', $this->id);
     }
 
     /**
@@ -108,18 +108,18 @@ class User extends Authenticatable
      */
     public function hasNegativeVoted(Post $post): bool
     {
-        return Post::find($post->id)->negativeVotes->contains('user_id', $this->id);
+        return $post->negativeVotes->contains('user_id', $this->id);
     }
 
     /**
      * User votes positive in a Post
      * 
      * @param Post $post
-     * @return void
+     * @return Post
      */
-    public function votePositive(Post $post): void
+    public function votePositive(Post $post): Post
     {
-        if ($post->conclued) return;
+        if ($post->conclued) return $post;
 
         if ($this->hasPositiveVoted($post)) {
             Vote::destroy($post->positiveVotes->where('user_id', $this->id));
@@ -133,17 +133,19 @@ class User extends Authenticatable
             $vote->post_id = $post->id;
             $vote->save();
         }
+
+        return $post;
     }
 
     /**
      * User votes negative in a Post
      * 
      * @param Post $post
-     * @return void
+     * @return Post
      */
-    public function voteNegative(Post $post): void
+    public function voteNegative(Post $post): Post
     {
-        if ($post->conclued) return;
+        if ($post->conclued) return $post;
 
         if ($this->hasNegativeVoted($post)) {
             Vote::destroy($post->negativeVotes->where('user_id', $this->id));
@@ -157,6 +159,8 @@ class User extends Authenticatable
             $vote->post_id = $post->id;
             $vote->save();
         }
+
+        return $post;
     }
 
     /**
@@ -167,18 +171,18 @@ class User extends Authenticatable
      */
     public function hasFollowing(Post $post): bool
     {
-        return Post::find($post->id)->follows->contains('user_id', $this->id);
+        return $post->follows->contains('user_id', $this->id);
     }
 
     /**
      * User follows a Post
      * 
      * @param Post $post
-     * @return void
+     * @return Post
      */
-    public function follow(Post $post): void
+    public function follow(Post $post): Post
     {
-        if ($post->conclued) return;
+        if ($post->conclued) return $post;
 
         if ($this->hasFollowing($post)) {
             Follow::destroy($post->follows->where('user_id', $this->id));
@@ -188,5 +192,7 @@ class User extends Authenticatable
             $follow->post_id = $post->id;
             $follow->save();
         }
+
+        return $post;
     }
 }
