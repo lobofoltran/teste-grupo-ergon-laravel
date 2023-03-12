@@ -1,6 +1,6 @@
 # Teste para Desenvolvedores no Grupo Ergon
 
-O teste foi desenvolvido com PHP e Laravel v10. Na parte referente aos botões de seguir e votar, utilizei componentes Livewire com Alpine.js. Banco em sqlite para testes. Na parte de autenticação fui ligeiramente rápido. Não alterei nenhuma view. Está sendo utilizado Jetstream Fortify + Tall Stack. 
+O teste foi desenvolvido com PHP e Laravel v10. Na parte referente aos botões de seguir e votar, utilizei componentes Livewire com Alpine.js. Banco em sqlite para testes. Na parte de autenticação fui ligeiramente rápido. Não alterei nenhuma view. Está sendo utilizado Jetstream Fortify + Tall Stack. Dentro do sistema, utilizei componentes DaisyUI para o front-end.
 
 # Como testar a aplicação
 
