@@ -10,7 +10,7 @@
         <li><a href="{{ route('posts.followed') }}">{{ __('Seguindo') }}</a></li>
       </ul>
     </div>
-    <a class="btn btn-ghost normal-case text-xl" href="{{ route('index') }}">{{ __('Recomende Séries e Filmes') }}</a>
+    <a class="btn btn-ghost normal-case text-xl" href="{{ route('index') }}">{{ __('Recomende.io') }}</a>
   </div>
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal px-1">
@@ -20,6 +20,6 @@
 </ul>
   </div>
   <div class="navbar-end">
-    <a class="btn btn-success" href="{{ route('posts.create') }}"><i class="fas fa-plus mr-1"></i> Novo Post</a>
+    <a class="btn btn-success" href="{{ route('posts.create') }}"><i class="fas fa-plus mr-1"></i>{{ __("Novo Post") }}</a>
   </div>
 </div>

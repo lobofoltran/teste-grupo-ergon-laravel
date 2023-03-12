@@ -97,7 +97,7 @@ class User extends Authenticatable
      */
     public function hasPositiveVoted(Post $post): bool
     {
-        return $post->positiveVotes->contains('user_id', $this->id);
+        return Post::find($post->id)->positiveVotes->contains('user_id', $this->id);
     }
 
     /**
@@ -108,7 +108,7 @@ class User extends Authenticatable
      */
     public function hasNegativeVoted(Post $post): bool
     {
-        return $post->negativeVotes->contains('user_id', $this->id);
+        return Post::find($post->id)->negativeVotes->contains('user_id', $this->id);
     }
 
     /**
@@ -167,7 +167,7 @@ class User extends Authenticatable
      */
     public function hasFollowing(Post $post): bool
     {
-        return $post->follows->contains('user_id', $this->id);
+        return Post::find($post->id)->follows->contains('user_id', $this->id);
     }
 
     /**
@@ -182,7 +182,7 @@ class User extends Authenticatable
 
         if ($this->hasFollowing($post)) {
             Follow::destroy($post->follows->where('user_id', $this->id));
-        } else {            
+        } else {
             $follow = new Follow;
             $follow->user_id = $this->id;
             $follow->post_id = $post->id;
