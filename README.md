@@ -27,10 +27,15 @@ Node.js       |  ^18.15
 
 ## Autenticação
 
-Foi criado dois usuários para teste através das seeds, caso queiram utilizá-los para testes rápidos:
+Foram criados dois usuários para testes através das seeds, caso queiram utilizá-los para testes:
 
 * Usuário `test@test.com` - senha `1234`
 * Usuário `test2@test.com` - senha `1234`
 
-# Testes Unitários (TDD)
+## Testes Unitários (TDD)
 
+Foram preparados uma cadeia de testes para testar e garantir que a aplicação após futuras releases continuem funcionando como era antes. Para testar a aplicação, execute o passo a passo:
+
+* Execute o comando `php artisan migrate --seed --env=testing` e digite `yes`
+* E por fim, utilize `php artisan test --env=testing`
+* Pronto! O retorno esperado é que todos os testes estejam assertivos.
